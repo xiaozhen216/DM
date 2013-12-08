@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <title>V5数据门户</title>
+
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+    <script src='http://codepen.io/assets/libs/fullpage/jquery.js'></script>
+
+    <script src="js/index.js"></script>
+    <script type="text/javascript" src="../framework/core.js"></script>
+    <script type="text/javascript" src="../framework/ajax.js"></script>
+    <script type="text/javascript" src="../ichartjs/ichart.1.1.min.js"></script>
+
+    <script type="text/javascript" src="ctq.js"></script>
+
+</head>
+
+<body>
+
+  <span class='bckg'></span>
+<header>
+  <h1>
+    V5数据门户
+  </h1>
+  <nav>
+    <ul>
+      <li class='mainmanu'>
+        <a >全网日报</a>
+        <ul class='submanu'>
+            <li><a data-title='省份产出货量' href="#" >省份产出货量</a></li>
+            <li><a data-title='分拨产出货量' href="#">分拨产出货量</a></li>
+            <li><a data-title='分拨操作货量' href="#">分拨操作货量</a></li>
+            <li><a data-title='物料收入' href="#">物料收入</a></li>
+          </ul>
+      </li>
+      <li class='mainmanu'>
+        <a >指标走势</a>
+          <ul class='submanu'>
+            <li><a data-title='省份货量分布' href="#" data-title='Photos'>Photos</a></li>
+            <li><a data-title='省份货量分布' href="#">Photo Stream</a></li>
+            <li><a data-title='省份货量分布' href="#">iCloud</a></li>
+          </ul>
+      </li>
+      <li class='mainmanu'>
+        <a >预警直播间</a>
+          <ul class='submanu'>
+            <li><a data-title='省份货量分布' href="#">Photos</a></li>
+            <li><a data-title='省份货量分布' href="#">Photo Stream</a></li>
+            <li><a data-title='省份货量分布' href="#">iCloud</a></li>
+          </ul>
+      </li>
+      <li class='mainmanu'>
+        <a data-title='V5数据门户4'>V5数据门户4</a>
+          <ul class='submanu'>
+            <li><a data-title='省份货量分布' href="#">Photos</a></li>
+            <li><a data-title='省份货量分布' href="#">Photo Stream</a></li>
+            <li><a data-title='省份货量分布' href="#">iCloud</a></li>
+          </ul>
+      </li>
+      <li class='mainmanu'>
+        <a >预警直播间</a>
+      </li>
+      <li class='mainmanu'>
+        <a >V5数据门户6</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class='title'>
+    <h2>V5数据门户</h2>
+    <a href='#' title='Profil'>
+      V5数据门户8
+    </a>
+  </div>
+
+  <div id='canvas'>
+    <form method="get" target='hiddenFrame'>
+    日期: <input type="date" name="selectedDate" id="selectedDate"/> &nbsp;
+    <input type="submit" onclick="query()" value="查询"/>
+  </form>
+  <iframe width='0px' height='0px' name='hiddenFrame'></iframe>
+  
+  <div id='canvasDiv'></div>
+  </div>
+  
+</main>
+
+
+
+</body>
+
+</html>
