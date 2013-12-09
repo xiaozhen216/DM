@@ -30,7 +30,7 @@ a {
 .bckg {
   background-color: #383B42;
   box-shadow: -4px 0px 10px rgba(14, 14, 14, 0.48) inset;
-  width: 200px;
+  width: 230px;
   height: 100%;
   position: fixed;
   left: 0;
@@ -47,8 +47,10 @@ a {
     transition: height linear .3s;
 }
 
+
+
 .mainmanu:hover ul {
-  height: 121px;
+  height: 399px;
 }
 .mainmanu ul li {
   background: #32353b;
@@ -119,7 +121,7 @@ h3 {
   position: relative;
 }
 header {
-  width: 200px;
+  width: 230px;
   height: 100%;
   float: left;
   position: relative;
@@ -128,9 +130,15 @@ header {
 header nav ul li {
   border-bottom: 1px solid #42454D;
   padding-left: 48px;
-
   transition: all 0.6s;
   border-top: 1px solid #2E3036;
+
+
+ /* line-height: 55px;
+  font-size: 23px;
+  font-family: '方正兰亭黑_YS_GB18030';
+  position: relative;
+  letter-spacing: 1px;*/
 }
 header nav ul li:hover {
   background-color: #454952;
@@ -141,14 +149,16 @@ header nav ul li:hover a {
   color: #fff;
   transition: all 0.6s;
 }
+
 header nav ul li a {
   line-height: 55px;
-  font-size: 20px;
+  font-size: 24px;
   font-family: '方正兰亭黑_YS_GB18030';
   position: relative;
   letter-spacing: 1px;
   transition: all 0.6s;
 }
+
 header nav ul li a:before {
   font-family: 'entypo', sans-serif;
   font-size: 20px;
@@ -169,7 +179,7 @@ header nav ul li:nth-child(2) a:before {
 header nav ul li:nth-child(3) a:before {
   content: "\1f4c5";
 }
-header nav ul li:nth-child(4) a:before {
+/*header nav ul li:nth-child(4) a:before {
   content: "\1f465";
 }
 header nav ul li:nth-child(5) a:before {
@@ -185,7 +195,7 @@ main {
   background-color: #fff;
   border-bottom: 1px solid #C0C1C0;
   height: 60px;
-  width: 1756px;
+  width: 100%;
   display: flex;
 }
 .title a {
@@ -211,11 +221,15 @@ a:hover {
 }
 
 .submanu li a{
+  line-height: 55px;
   font-size: 10px;
+  font-family: '方正兰亭黑_YS_GB18030';
+  position: relative;
+  margin-left: 10px;
 }
 
 #canvas {
-  margin-left: 50px;
+  margin-left: 15px;
   margin-top: 50px;
   
 }

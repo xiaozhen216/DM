@@ -1,12 +1,12 @@
 
-	var serviceUrl = Query.get("service") || "../display/json/199";
+	var serviceUrlCTQ = "../display/json/199";
 	
-	function query() {
+	function queryCTQ() {
 
 		var selectedDate = $$("selectedDate").value;
 
 		Ajax({
-			url : serviceUrl,
+			url : serviceUrlCTQ,
 			method : "POST",
 			params : {"param1": selectedDate,"param2": selectedDate}, 
 			type : "json",
@@ -20,7 +20,7 @@
 
 
 
-	function show(originData) {
+	function showCTQ(originData) {
 		var total = 0;
 		var data = [];
 		var maxdata=0;
