@@ -48,10 +48,6 @@ a {
 }
 
 
-
-.mainmanu:hover ul {
-  height: 399px;
-}
 .mainmanu ul li {
   background: #32353b;
   box-shadow: #3a3c42 0 1px 0 inset;
@@ -85,6 +81,11 @@ h1 {
   background-color: #34363A;
   border-bottom: 1px solid rgba(101, 116, 134, 0.57);
 }
+
+h1:before{
+  content: url(m1.png);
+}
+
 h2 {
   font-size: 24px;
   font-family:'方正姚体';
@@ -152,7 +153,7 @@ header nav ul li:hover a {
 
 header nav ul li a {
   line-height: 55px;
-  font-size: 24px;
+  font-size: 20px;
   font-family: '方正兰亭黑_YS_GB18030';
   position: relative;
   letter-spacing: 1px;
@@ -179,6 +180,11 @@ header nav ul li:nth-child(2) a:before {
 header nav ul li:nth-child(3) a:before {
   content: "\1f4c5";
 }
+
+
+
+
+
 /*header nav ul li:nth-child(4) a:before {
   content: "\1f465";
 }
@@ -222,15 +228,40 @@ a:hover {
 
 .submanu li a{
   line-height: 55px;
-  font-size: 10px;
+  font-size: 14px;
   font-family: '方正兰亭黑_YS_GB18030';
   position: relative;
   margin-left: 10px;
 }
 
-#canvas {
-  margin-left: 15px;
-  margin-top: 50px;
+#daily:hover ul {
+  height: 399px;
+}
+
+#line:hover ul {
+  height: 456px;
+}
+
+#warning:hover ul {
+  height: 228px;
+}
+
+#daily li a:before{
+  content: "\1f50d";
+}
+
+#line li a:before{
+  content: "\e771";
+}
+
+#warning li a:before{
+  content: "\1f4c5";
+}
+
+#canvasMap {
+  margin-left: 0px;
+  margin-top: 0px;
+  height: 100%
   
 }
 
