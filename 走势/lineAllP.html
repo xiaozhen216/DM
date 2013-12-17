@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>货量趋势图</title>
+
+	<script type="text/javascript" src="../framework/core.js"></script>
+	<script type="text/javascript" src="../framework/ajax.js"></script>	
+	<script type="text/javascript" src="js/jquery-1.8.3.min.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+
+	<script type="text/javascript">
+
+	var serviceUrl = Query.get("service") || "../display/json/207";
+	
+	function query() {
+
+		var fromDate = $$("fromDate").value;
+		var toDate = $$("toDate").value;
+		var whichCenter = $$("whichCenter").value;
+
+		Ajax({
+			url : serviceUrl,
+			method : "POST",
+			params : {"param1": fromDate, "param2": toDate, "param3": fromDate, "param4": toDate, "param5": whichCenter},
+			type : "json",
+			waiting : true,
+			ondata : function() {
+				var data = eval(this.getResponseText());
+				show(data);
+				/*if( result == null ) {	 
+					return ;
+				}*/
+			}
+		});	  
+	}
+
+	
+	function show(originData) {
+		var totalIn = 0;
+		var totalOut = 0;
+		var dataW = [];
+		var dataO = [];
+		var dataDay = [];
+		var showDay = [];
+		var maxdataIn = 0;
+		var maxdataOut = 0;
+		var maxDayIn = 0;
+		var maxDayOut = 0;
+		var scaledata = 0;
+		var spaceData = 0;
+		var maxw = 0;
+		
+		for(var i = 0; i < originData.length; i++) {
+			var weightIn = originData[i]["入网重量"];
+			var weightOut = originData[i]["出网重量"];
+			var dateIn = originData[i]["日期"];
+			if (maxdataIn<weightIn) {
+				maxdataIn = weightIn;
+				maxDayIn = dateIn
+			}
+			if (maxdataOut<weightOut) {
+				maxdataOut = weightOut;				
+			}
+			maxw = maxdataOut;
+
+			if (maxdataOut<maxdataIn) {maxw = maxdataIn}
+			
+			if (maxw/100<1) {scaledata=Math.ceil(maxw/10) * 10;}
+			scaledata=Math.ceil(maxw/100) * 100;
+
+			if (i % Math.round(originData.length/10) == 0){
+				showDay[i] = dateIn;
+			}
+			else{
+				showDay[i] = ' ';
+			}
+
+			totalIn += weightIn;
+			totalOut += weightOut;
+			dataW[i] = weightIn;
+			dataO[i] = weightOut;
+			dataDay[i] = dateIn;
+		}
+
+		spaceData=scaledata/5;
+				
+$(function () {
+  $('#container').highcharts({
+      chart: {
+          type: 'spline'
+      },
+      title: {
+          text: 'Wind speed during two days'
+      },
+      subtitle: {
+          text: 'October 6th and 7th 2009 at two locations in Vik i Sogn, Norway'
+      },
+      xAxis: {
+          type: 'datetime'
+      },
+      yAxis: {
+          title: {
+              text: 'Wind speed (m/s)'
+          },
+          min: 0,
+          minorGridLineWidth: 0,
+          gridLineWidth: 0,
+          alternateGridColor: null,
+          plotBands: [{ // Light air
+              from: 0.3,
+              to: 1.5,
+              color: 'rgba(68, 170, 213, 0.1)',
+              label: {
+                  text: 'Light air',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // Light breeze
+              from: 1.5,
+              to: 3.3,
+              color: 'rgba(0, 0, 0, 0)',
+              label: {
+                  text: 'Light breeze',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // Gentle breeze
+              from: 3.3,
+              to: 5.5,
+              color: 'rgba(68, 170, 213, 0.1)',
+              label: {
+                  text: 'Gentle breeze',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // Moderate breeze
+              from: 5.5,
+              to: 8,
+              color: 'rgba(0, 0, 0, 0)',
+              label: {
+                  text: 'Moderate breeze',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // Fresh breeze
+              from: 8,
+              to: 11,
+              color: 'rgba(68, 170, 213, 0.1)',
+              label: {
+                  text: 'Fresh breeze',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // Strong breeze
+              from: 11,
+              to: 14,
+              color: 'rgba(0, 0, 0, 0)',
+              label: {
+                  text: 'Strong breeze',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }, { // High wind
+              from: 14,
+              to: 15,
+              color: 'rgba(68, 170, 213, 0.1)',
+              label: {
+                  text: 'High wind',
+                  style: {
+                      color: '#606060'
+                  }
+              }
+          }]
+      },
+      tooltip: {
+          valueSuffix: ' m/s'
+      },
+      plotOptions: {
+          spline: {
+              lineWidth: 4,
+              states: {
+                  hover: {
+                      lineWidth: 5
+                  }
+              },
+              marker: {
+                  enabled: false
+              },
+              pointInterval: 3600000, // one hour
+              pointStart: Date.UTC(2009, 9, 6, 0, 0, 0)
+          }
+      },
+      series: [{
+          name: 'Hestavollane',
+          data: dataW
+
+      }, {
+          name: 'Voll',
+          data: dataO
+      }]
+      ,
+      navigation: {
+          menuItemStyle: {
+              fontSize: '10px'
+          }
+      }
+  });
+});		
+
+		}
+	
+	</script>
+</head>
+
+<body>
+	
+	<form method="get" target='hiddenFrame'>
+		日期从: <input type="date" id="fromDate"/>  到:  <input type="date" id="toDate"/>&nbsp;
+		分拨(城市名): <input type="text" id="whichCenter"/>&nbsp;
+		<input type="submit" onclick="query()" value="查询"/>
+	</form>
+	<iframe width='0px' height='0px' name='hiddenFrame'></iframe>
+	
+	<div id='canvasDiv'></div>
+
+</body>
+</html>
