@@ -4,9 +4,9 @@
 	<meta charset="UTF-8" />
 	<title>货量趋势图</title>
 
-	<script type="text/javascript" src="../framework/core.js"></script>
-	<script type="text/javascript" src="../framework/ajax.js"></script>
-	<script type="text/javascript" src="../ichartjs/ichart.1.1.min.js"></script>
+	<script type="text/javascript" src="../../framework/core.js"></script>
+	<script type="text/javascript" src="../../framework/ajax.js"></script>
+	<script type="text/javascript" src="../../ichartjs/ichart.1.1.min.js"></script>
 
 	<script type="text/javascript">
 
@@ -15,13 +15,13 @@
 	function query() {
 		var optionObj = document.getElementById('dataType');
 		if (optionObj.value==1) {
-			serviceUrl = "../display/json/197";
+			serviceUrl = "../../display/json/197";
 		}
 		if (optionObj.value==2) {
-			serviceUrl = "../display/json/208";
+			serviceUrl = "../../display/json/208";
 		}
 		if (optionObj.value==3) {
-			serviceUrl = "../display/json/209";
+			serviceUrl = "../../display/json/209";
 		}
 
 
