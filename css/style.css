@@ -229,7 +229,7 @@ a:hover {
 }
 
 .submanu li a{
-  line-height: 55px;
+  line-height: 45px;
   font-size: 14px;
   font-family: '方正兰亭黑_YS_GB18030';
   position: relative;
@@ -237,11 +237,11 @@ a:hover {
 }
 
 #daily:hover ul {
-  height: 798px;
+  height: 751px;
 }
 
 #line:hover ul {
-  height: 570px;
+  height: 627px;
 }
 
 #warning:hover ul {
