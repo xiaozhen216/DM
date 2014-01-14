@@ -14,6 +14,8 @@
 	var whichday;
 	var toDate;
 	var fromDate;
+	var inYear;
+	var attention;
 	
 	Date.prototype.getWeekOfYear = function(weekStart) { // weekStart：每周开始于周几：周日：0，周一：1，周二：2 ...，默认为周日
 		weekStart = (weekStart || 0) - 0;
@@ -33,6 +35,9 @@
 			serviceUrl = "../../display/json/242";
 			fromDate = $$("fromDate").value;
 			toDate = $$("toDate").value;
+			var myDate = new Date(fromDate);
+            inYear = myDate.getFullYear();
+            attention = inYear + '年日汇总';
 		}
 		if (optionObj.value==2) {
 			serviceUrl = "../../display/json/243";
@@ -40,6 +45,8 @@
 			var det = new Date($$("toDate").value);
 			fromDate = dst.getWeekOfYear();
 			toDate = det.getWeekOfYear();
+			inYear = dst.getFullYear(); 
+			attention = '横坐标为' + inYear +'年第' + fromDate + '周--第' + toDate +'全周数据';
 		}
 		if (optionObj.value==3) {
 			serviceUrl = "../../display/json/244";
@@ -47,6 +54,8 @@
 			var met = new Date($$("toDate").value);
 			fromDate = mst.getMonth()+1;
 			toDate = met.getMonth()+1;
+			inYear = mst.getFullYear();
+			attention = '横坐标为' + inYear +'年第' + fromDate + '月--第' + toDate +'全月数据';
 		}
 
 		whichday = $$("whichday").value;
@@ -54,7 +63,7 @@
 		Ajax({
 			url : serviceUrl,
 			method : "POST",
-			params : {"param1": fromDate, "param2": toDate, "param3": whichday},
+			params : {"param1": inYear, "param2": fromDate, "param3": toDate, "param4": whichday},
 			type : "json",
 			waiting : true,
 			ondata : function() {
@@ -124,7 +133,7 @@
 		    var chart = new iChart.Area2D({
 		        render: 'canvasDiv',
 		        data: data,
-		        title: whichday + '中心间到发件扫描率走势曲线',
+		        title: whichday + '中心间到发件扫描率走势曲线，' + attention,
 		        width: 1050,
 		        height: 550,
 		        legend: {

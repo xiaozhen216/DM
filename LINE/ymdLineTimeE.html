@@ -13,6 +13,8 @@
 	var serviceUrl;
 	var toDate;
 	var fromDate;
+	var inYear;
+	var attention;
 
 	Date.prototype.getWeekOfYear = function(weekStart) { // weekStart：每周开始于周几：周日：0，周一：1，周二：2 ...，默认为周日
 		weekStart = (weekStart || 0) - 0;
@@ -28,31 +30,44 @@
 	
 	function query() {
 		var optionObj = document.getElementById('dataType');
+		var optionTobj = document.getElementById('time_Type');
 		if (optionObj.value==1) {
-			serviceUrl = "../../display/json/213";
+			if (optionTobj.value==1) {serviceUrl = "../../display/json/213";} 
+			else{serviceUrl = "../../display/json/256";}			
 			fromDate = $$("fromDate").value;
 			toDate = $$("toDate").value;
+			var myDate = new Date(fromDate);
+            inYear = myDate.getFullYear();
+            attention = inYear + '年日汇总';
 		}
 		if (optionObj.value==2) {
-			serviceUrl = "../../display/json/236";
+			if (optionTobj.value==1) {serviceUrl = "../../display/json/236";} 
+			else{serviceUrl = "../../display/json/257";}	
+			
 			var dst = new Date($$("fromDate").value);
 			var det = new Date($$("toDate").value);
+			inYear = dst.getFullYear(); 
 			fromDate = dst.getWeekOfYear();
 			toDate = det.getWeekOfYear();
+			attention = '横坐标为' + inYear +'年第' + fromDate + '周--第' + toDate +'全周数据';
 		}
 		if (optionObj.value==3) {
-			serviceUrl = "../../display/json/237";
+			if (optionTobj.value==1) {serviceUrl = "../../display/json/237";} 
+			else{serviceUrl = "../../display/json/258";}	
+			
 			var mst = new Date($$("fromDate").value);
 			var met = new Date($$("toDate").value);
+			inYear = mst.getFullYear(); 
 			fromDate = mst.getMonth()+1;
 			toDate = met.getMonth()+1;
+			attention = '横坐标为' + inYear +'年第' + fromDate + '月--第' + toDate +'全月数据';
 		}
 
 
 		Ajax({
 			url : serviceUrl,
 			method : "POST",
-			params : {"param1": fromDate, "param2": toDate},
+			params : {"param1": inYear, "param2": fromDate, "param3": toDate},
 			type : "json",
 			waiting : true,
 			ondata : function() {
@@ -126,7 +141,7 @@
 				color:'#FF9900'
 			},
 			footnote : {
-				text:' ',
+				text:attention,
 				font : '微软雅黑',
 				fontsize:20,
 				fontpercent:600,
@@ -228,6 +243,11 @@
 			<option value="2">按周</option>
 			<option value="3">按月</option>
 		</select>&nbsp;
+
+		查询类型: <select id="time_Type">
+			<option value="1" selected>准时时效</option>
+			<option value="2">准时加一时效</option>
+			</select>&nbsp;
 	</form>
 	<iframe width='0px' height='0px' name='hiddenFrame'></iframe>
 	
